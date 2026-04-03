@@ -1,0 +1,19 @@
+name: animated_splash_themes_example
+description: Example app for animated_splash_themes package.
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  animated_splash_themes:
+    path: ../
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/icon.png
