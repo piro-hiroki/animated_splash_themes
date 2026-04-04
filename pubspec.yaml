@@ -1,11 +1,11 @@
 name: animated_splash_themes
 description: >-
-  Richly animated Flutter splash screens with 4 built-in themes: Teal, Midnight,
-  Minimalist, and Pop. Supports random theme selection, custom app name, icon, and
-  configurable display duration.
+  Richly animated Flutter splash screens with 4 built-in styles: Particles, Neon,
+  Grid, and Bounce. Supports random style selection, custom colors, and configurable
+  display duration.
 version: 1.0.0
-repository: https://github.com/your-org/animated_splash_themes
-issue_tracker: https://github.com/your-org/animated_splash_themes/issues
+repository: https://github.com/piro-hiroki/animated_splash_themes
+issue_tracker: https://github.com/piro-hiroki/animated_splash_themes/issues
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

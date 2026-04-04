@@ -1,16 +1,16 @@
-/// スプラッシュ画面のテーマ
-enum SplashTheme {
-  /// ティールグラデーション + パーティクル
-  teal,
+/// スプラッシュ画面のアニメーションスタイル
+enum SplashStyle {
+  /// パーティクル + 背景サークル
+  particles,
 
-  /// ダークネオン（Midnight）
-  midnight,
+  /// ネオングロー + コーナーブラケット
+  neon,
 
-  /// ライトグレー + グリッド（Minimalist）
-  minimalist,
+  /// グリッド背景 + 回転サークル
+  grid,
 
-  /// カラフル + ジャンプアニメーション（Pop）
-  pop,
+  /// バウンス + ジャンプアニメーション
+  bounce,
 
   /// 実行時にランダム選択
   random,

@@ -1,15 +1,15 @@
 # animated_splash_themes
 
-A Flutter package providing richly animated splash screens with 4 built-in themes.
+A Flutter package providing richly animated splash screens with 4 built-in styles.
 
-## Themes
+## Styles
 
-| Theme | Description |
+| Style | Description |
 |-------|-------------|
-| `teal` | Teal gradient with floating particles and glow effects |
-| `midnight` | Dark neon with cyan glow, corner brackets, and scan lines |
-| `minimalist` | Light gray with grid background and orbital animation |
-| `pop` | Colorful gradient with jumping icon and rotating ring |
+| `particles` | Teal gradient with floating particles and glow effects |
+| `neon` | Dark background with neon glow, corner brackets, and scan lines |
+| `grid` | Light gray with grid background and orbital animation |
+| `bounce` | Colorful gradient with jumping icon and rotating ring |
 | `random` | Randomly picks one of the above at runtime |
 
 ## Installation
@@ -29,19 +29,32 @@ MaterialApp(
     appName: 'My App',
     appSubtitle: 'POWERED BY AI',        // optional
     iconPath: 'assets/images/icon.png',
-    theme: SplashTheme.random,
+    theme: SplashStyle.random,
     nextScreen: const HomePage(),
   ),
 )
 ```
 
-### Specific theme
+### Specific style
 
 ```dart
 AnimatedSplashScreen(
   appName: 'My App',
   iconPath: 'assets/images/icon.png',
-  theme: SplashTheme.midnight,
+  theme: SplashStyle.neon,
+  nextScreen: const HomePage(),
+)
+```
+
+### Custom colors
+
+```dart
+AnimatedSplashScreen(
+  appName: 'My App',
+  iconPath: 'assets/images/icon.png',
+  theme: SplashStyle.neon,
+  backgroundColors: [Color(0xFF1A0030), Color(0xFF0D001A)],
+  accentColor: Colors.purple,
   nextScreen: const HomePage(),
 )
 ```
@@ -52,7 +65,7 @@ AnimatedSplashScreen(
 AnimatedSplashScreen(
   appName: 'My App',
   iconPath: 'assets/images/icon.png',
-  theme: SplashTheme.teal,
+  theme: SplashStyle.particles,
   duration: const Duration(milliseconds: 3000),
   transitionDuration: const Duration(milliseconds: 800),
   nextScreen: const HomePage(),
@@ -64,15 +77,17 @@ AnimatedSplashScreen(
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `appName` | `String` | ✓ | — | Main app name displayed on splash |
-| `appSubtitle` | `String?` | | `'POWERED BY AI'` | Subtitle text below app name |
+| `appSubtitle` | `String?` | | — | Subtitle text below app name |
 | `iconPath` | `String` | ✓ | — | Asset path to the app icon |
 | `nextScreen` | `Widget` | ✓ | — | Screen to navigate to after splash |
-| `theme` | `SplashTheme` | | `SplashTheme.random` | Which theme to display |
+| `theme` | `SplashStyle` | | `SplashStyle.random` | Which style to display |
 | `duration` | `Duration` | | `2650ms` | How long to show the splash |
 | `transitionDuration` | `Duration` | | `1200ms` | Fade transition to next screen |
+| `backgroundColors` | `List<Color>?` | | style default | Background gradient colors |
+| `accentColor` | `Color?` | | style default | Accent / glow color |
 
 ## Notes
 
 - The icon image should be square (recommended: 160×160 or larger)
-- Status bar style is automatically managed per theme (Midnight uses light icons)
+- Status bar style is automatically managed per style (Neon uses light icons)
 - All animations are pure Flutter — no native dependencies required
