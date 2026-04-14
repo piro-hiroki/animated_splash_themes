@@ -4,13 +4,12 @@ A Flutter package providing richly animated splash screens with 4 built-in style
 
 ## Styles
 
-| Style | Description |
-|-------|-------------|
-| `particles` | Teal gradient with floating particles and glow effects |
-| `neon` | Dark background with neon glow, corner brackets, and scan lines |
-| `grid` | Light gray with grid background and orbital animation |
-| `bounce` | Colorful gradient with jumping icon and rotating ring |
-| `random` | Randomly picks one of the above at runtime |
+| particles | neon | grid | bounce |
+|-----------|------|------|--------|
+| ![particles](doc/particles.gif) | ![neon](doc/neon.gif) | ![grid](doc/grid.gif) | ![bounce](doc/bounce.gif) |
+| Teal gradient with floating particles and glow effects | Dark background with neon glow, corner brackets, and scan lines | Light gray with grid background and orbital animation | Colorful gradient with jumping icon and rotating ring |
+
+`random` — randomly picks one of the above at runtime.
 
 ## Installation
 
