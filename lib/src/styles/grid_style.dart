@@ -134,19 +134,6 @@ class GridStyle extends StatelessWidget {
             child: Image.asset(iconPath, width: 140, height: 140, fit: BoxFit.cover),
           ),
         ),
-        AnimatedBuilder(
-          animation: anims.glowCtrl,
-          builder: (_, __) => Transform.scale(
-            scale: 1.0 + anims.glowCtrl.value * 0.3,
-            child: Container(
-              width: 8, height: 8,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle, color: accent,
-                boxShadow: [BoxShadow(color: accent.withAlpha(128), blurRadius: 12)],
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }
