@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+* Remove center dot from GridStyle icon decoration
+
 ## 1.0.0
 
 * Initial release
