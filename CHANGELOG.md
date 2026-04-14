@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2
+
+* Add animated GIF previews for all splash styles to README
+
 ## 1.0.1
 
 * Remove center dot from GridStyle icon decoration
