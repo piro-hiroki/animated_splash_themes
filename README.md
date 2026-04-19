@@ -20,7 +20,7 @@ A Flutter package providing richly animated splash screens with 5 built-in style
 
 ```yaml
 dependencies:
-  animated_splash_themes: ^1.1.0
+  animated_splash_themes: ^1.1.3
 ```
 
 ## Usage
