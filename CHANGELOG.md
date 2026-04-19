@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+* Shrink README preview GIFs to stay under pub.dev's package size limit
+
 ## 1.1.1
 
 * Update README preview GIFs with higher-quality recordings
