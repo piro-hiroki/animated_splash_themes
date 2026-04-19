@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+* Update README preview GIFs with higher-quality recordings
+
 ## 1.1.0
 
 * Add `SplashStyle.expand` — X-style zoom-out of the app name (and optional icon) on launch
