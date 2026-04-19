@@ -12,6 +12,12 @@ class SplashAnimations {
   final AnimationController glowCtrl;
   final AnimationController jumpCtrl;
 
+  /// expand スタイル用: アプリ名の拡大スケール (1.0 → 巨大)
+  final Animation<double> expandScale;
+
+  /// expand スタイル用: 拡大終盤のフェードアウト (1.0 → 0.0)
+  final Animation<double> expandFade;
+
   const SplashAnimations({
     required this.iconScale,
     required this.iconOpacity,
@@ -22,5 +28,7 @@ class SplashAnimations {
     required this.glowAnim,
     required this.glowCtrl,
     required this.jumpCtrl,
+    required this.expandScale,
+    required this.expandFade,
   });
 }

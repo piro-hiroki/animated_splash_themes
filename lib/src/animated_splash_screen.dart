@@ -7,6 +7,7 @@ import 'styles/particles_style.dart';
 import 'styles/neon_style.dart';
 import 'styles/grid_style.dart';
 import 'styles/bounce_style.dart';
+import 'styles/expand_style.dart';
 
 /// アニメーション付きスプラッシュ画面
 ///
@@ -28,7 +29,10 @@ class AnimatedSplashScreen extends StatefulWidget {
   final String? appSubtitle;
 
   /// アイコン画像のアセットパス（例: 'assets/images/icon.png'）
-  final String iconPath;
+  ///
+  /// [SplashStyle.expand] では使用しないため省略可能。
+  /// それ以外のスタイルでは必須。
+  final String? iconPath;
 
   /// 使用するスタイル。[SplashStyle.random] でランダム選択
   final SplashStyle theme;
@@ -52,14 +56,17 @@ class AnimatedSplashScreen extends StatefulWidget {
     super.key,
     required this.appName,
     this.appSubtitle,
-    required this.iconPath,
+    this.iconPath,
     required this.nextScreen,
     this.theme = SplashStyle.random,
     this.duration = const Duration(milliseconds: 2650),
     this.transitionDuration = const Duration(milliseconds: 1200),
     this.backgroundColors,
     this.accentColor,
-  });
+  }) : assert(
+          theme == SplashStyle.expand || iconPath != null,
+          'iconPath is required for all styles except SplashStyle.expand',
+        );
 
   @override
   State<AnimatedSplashScreen> createState() => _AnimatedSplashScreenState();
@@ -75,6 +82,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
   late final AnimationController _dotCtrl;
   late final AnimationController _glowCtrl;
   late final AnimationController _jumpCtrl;
+  late final AnimationController _expandCtrl;
 
   late final SplashAnimations _anims;
 
@@ -101,6 +109,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     _dotCtrl  = AnimationController(vsync: this, duration: const Duration(milliseconds: 650));
     _glowCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 3000));
     _jumpCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 2200));
+    _expandCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 900));
 
     final iconCurve = switch (_resolvedStyle) {
       SplashStyle.bounce => Curves.elasticOut,
@@ -125,12 +134,31 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
           .animate(CurvedAnimation(parent: _glowCtrl, curve: Curves.easeInOut)),
       glowCtrl: _glowCtrl,
       jumpCtrl: _jumpCtrl,
+      expandScale: TweenSequence<double>([
+        TweenSequenceItem(
+          tween: Tween(begin: 1.0, end: 1.25)
+              .chain(CurveTween(curve: Curves.easeOut)),
+          weight: 65,
+        ),
+        TweenSequenceItem(
+          tween: Tween(begin: 1.25, end: 60.0)
+              .chain(CurveTween(curve: Curves.easeInExpo)),
+          weight: 35,
+        ),
+      ]).animate(_expandCtrl),
+      expandFade: Tween(begin: 1.0, end: 0.0)
+          .animate(CurvedAnimation(parent: _expandCtrl, curve: const Interval(0.88, 1.0, curve: Curves.easeIn))),
     );
 
     _startSequence();
   }
 
   Future<void> _startSequence() async {
+    if (_resolvedStyle == SplashStyle.expand) {
+      await _runExpandSequence();
+      return;
+    }
+
     await Future.delayed(const Duration(milliseconds: 200));
     _iconCtrl.forward();
 
@@ -148,6 +176,18 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
 
     final remaining = widget.duration - const Duration(milliseconds: 1350);
     if (remaining > Duration.zero) await Future.delayed(remaining);
+    if (mounted) _navigate();
+  }
+
+  Future<void> _runExpandSequence() async {
+    await Future.delayed(const Duration(milliseconds: 200));
+    _nameCtrl.forward();
+
+    final expandMs = _expandCtrl.duration!.inMilliseconds;
+    final holdMs = widget.duration.inMilliseconds - 200 - 650 - expandMs;
+    if (holdMs > 0) await Future.delayed(Duration(milliseconds: holdMs));
+
+    await _expandCtrl.forward();
     if (mounted) _navigate();
   }
 
@@ -175,6 +215,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     _dotCtrl.dispose();
     _glowCtrl.dispose();
     _jumpCtrl.dispose();
+    _expandCtrl.dispose();
     super.dispose();
   }
 
@@ -183,20 +224,24 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     return switch (_resolvedStyle) {
       SplashStyle.particles => ParticlesStyle(
           appName: widget.appName, appSubtitle: widget.appSubtitle,
-          iconPath: widget.iconPath, anims: _anims,
+          iconPath: widget.iconPath!, anims: _anims,
           backgroundColors: widget.backgroundColors, accentColor: widget.accentColor),
       SplashStyle.neon => NeonStyle(
           appName: widget.appName, appSubtitle: widget.appSubtitle,
-          iconPath: widget.iconPath, anims: _anims,
+          iconPath: widget.iconPath!, anims: _anims,
           backgroundColors: widget.backgroundColors, accentColor: widget.accentColor),
       SplashStyle.grid => GridStyle(
           appName: widget.appName, appSubtitle: widget.appSubtitle,
-          iconPath: widget.iconPath, anims: _anims,
+          iconPath: widget.iconPath!, anims: _anims,
           backgroundColors: widget.backgroundColors, accentColor: widget.accentColor),
       SplashStyle.bounce => BounceStyle(
           appName: widget.appName, appSubtitle: widget.appSubtitle,
-          iconPath: widget.iconPath, anims: _anims,
+          iconPath: widget.iconPath!, anims: _anims,
           backgroundColors: widget.backgroundColors),
+      SplashStyle.expand => ExpandStyle(
+          appName: widget.appName, appSubtitle: widget.appSubtitle,
+          iconPath: widget.iconPath, anims: _anims,
+          backgroundColors: widget.backgroundColors, accentColor: widget.accentColor),
       SplashStyle.random => const SizedBox.shrink(), // unreachable
     };
   }

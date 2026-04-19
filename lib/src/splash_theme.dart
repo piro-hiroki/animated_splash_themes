@@ -12,6 +12,9 @@ enum SplashStyle {
   /// バウンス + ジャンプアニメーション
   bounce,
 
+  /// アプリ名が拡大してホーム画面に遷移（X 風）
+  expand,
+
   /// 実行時にランダム選択
   random,
 }

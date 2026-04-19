@@ -1,13 +1,18 @@
 # animated_splash_themes
 
-A Flutter package providing richly animated splash screens with 4 built-in styles.
+A Flutter package providing richly animated splash screens with 5 built-in styles.
 
 ## Styles
 
-| particles | neon | grid | bounce |
-|-----------|------|------|--------|
-| ![particles](doc/particles.gif) | ![neon](doc/neon.gif) | ![grid](doc/grid.gif) | ![bounce](doc/bounce.gif) |
-| Teal gradient with floating particles and glow effects | Dark background with neon glow, corner brackets, and scan lines | Light gray with grid background and orbital animation | Colorful gradient with jumping icon and rotating ring |
+| particles | neon | grid |
+|-----------|------|------|
+| ![particles](doc/particles.gif) | ![neon](doc/neon.gif) | ![grid](doc/grid.gif) |
+| Teal gradient with floating particles and glow effects | Dark background with neon glow, corner brackets, and scan lines | Light gray with grid background and orbital animation |
+
+| bounce | expand |
+|--------|--------|
+| ![bounce](doc/bounce.gif) | ![expand](doc/expand.gif) |
+| Colorful gradient with jumping icon and rotating ring | X-style zoom-out where the app name scales up and reveals the home screen (icon optional) |
 
 `random` — randomly picks one of the above at runtime.
 
@@ -15,7 +20,7 @@ A Flutter package providing richly animated splash screens with 4 built-in style
 
 ```yaml
 dependencies:
-  animated_splash_themes: ^1.0.0
+  animated_splash_themes: ^1.1.0
 ```
 
 ## Usage
@@ -58,6 +63,17 @@ AnimatedSplashScreen(
 )
 ```
 
+### Expand style (no icon needed)
+
+```dart
+AnimatedSplashScreen(
+  appName: 'My App',
+  appSubtitle: 'POWERED BY AI',
+  theme: SplashStyle.expand,
+  nextScreen: const HomePage(),
+)
+```
+
 ### Custom duration
 
 ```dart
@@ -77,7 +93,7 @@ AnimatedSplashScreen(
 |-----------|------|----------|---------|-------------|
 | `appName` | `String` | ✓ | — | Main app name displayed on splash |
 | `appSubtitle` | `String?` | | — | Subtitle text below app name |
-| `iconPath` | `String` | ✓ | — | Asset path to the app icon |
+| `iconPath` | `String?` | ✓ ᵃ | — | Asset path to the app icon. Required for all styles except `expand` |
 | `nextScreen` | `Widget` | ✓ | — | Screen to navigate to after splash |
 | `theme` | `SplashStyle` | | `SplashStyle.random` | Which style to display |
 | `duration` | `Duration` | | `2650ms` | How long to show the splash |
