@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3
+
+* Update README installation snippet to reference the current version
+
 ## 1.1.2
 
 * Shrink README preview GIFs to stay under pub.dev's package size limit
