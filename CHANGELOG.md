@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.4
+
+* Shorten `pubspec.yaml` description to fit pub.dev's recommended 60–180 char range
+* Clarify that `iconPath` is optional (not unused) for `SplashStyle.expand`
+
 ## 1.1.3
 
 * Update README installation snippet to reference the current version
