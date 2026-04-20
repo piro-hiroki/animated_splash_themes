@@ -30,7 +30,7 @@ class AnimatedSplashScreen extends StatefulWidget {
 
   /// アイコン画像のアセットパス（例: 'assets/images/icon.png'）
   ///
-  /// [SplashStyle.expand] では使用しないため省略可能。
+  /// [SplashStyle.expand] ではオプショナル（指定すればアプリ名の上に表示される）。
   /// それ以外のスタイルでは必須。
   final String? iconPath;
 

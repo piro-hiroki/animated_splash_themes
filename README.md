@@ -20,7 +20,7 @@ A Flutter package providing richly animated splash screens with 5 built-in style
 
 ```yaml
 dependencies:
-  animated_splash_themes: ^1.1.3
+  animated_splash_themes: ^1.1.4
 ```
 
 ## Usage
@@ -63,13 +63,14 @@ AnimatedSplashScreen(
 )
 ```
 
-### Expand style (no icon needed)
+### Expand style (icon optional)
 
 ```dart
 AnimatedSplashScreen(
   appName: 'My App',
   appSubtitle: 'POWERED BY AI',
   theme: SplashStyle.expand,
+  // iconPath: 'assets/images/icon.png', // optional
   nextScreen: const HomePage(),
 )
 ```

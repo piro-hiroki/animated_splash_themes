@@ -1,9 +1,8 @@
 name: animated_splash_themes
 description: >-
-  Richly animated Flutter splash screens with 5 built-in styles: Particles, Neon,
-  Grid, Bounce, and Expand (X-style logo zoom). Supports random style selection,
-  custom colors, and configurable display duration.
-version: 1.1.3
+  Animated Flutter splash screens with 5 built-in styles (Particles, Neon, Grid,
+  Bounce, Expand): random selection, custom colors, configurable duration.
+version: 1.1.4
 repository: https://github.com/piro-hiroki/animated_splash_themes
 issue_tracker: https://github.com/piro-hiroki/animated_splash_themes/issues
 
